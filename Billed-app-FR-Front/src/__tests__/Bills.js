@@ -91,4 +91,38 @@ describe("Given I am connected as an employee", () => {
       expect(modale).toBeTruthy();
     });
   });
+
+  //TO DO 5 Bills Coverage :
+  //Ajout d'un test pour l'ouverture d'une nouvelle
+  //note de frais au clic sur le bouton "New Bill"
+  describe("When I click on the 4New Bill' button on Bills page", () => {
+    test("Then it should render 'New Bill' page", () => {
+      Object.defineProperty(window, "localStorage", {
+        value: localStorageMock,
+      });
+      const user = JSON.stringify({
+        type: "Employee",
+      });
+      window.localStorage.setItem("user", user);
+      document.body.innerHTML = BillsUI({ data: [] });
+
+      const onNavigate = (pathname) => {
+        document.body.innerHTML = ROUTES({ pathname });
+      };
+
+      const newBills = new Bills({
+        document,
+        onNavigate,
+        store: null,
+        localStorage: window.localStorage,
+      });
+
+      const handleClickNewBill = jest.fn(newBills.handleClickNewBill);
+      const newBillBtn = screen.getByTestId("btn-new-bill");
+      newBillBtn.addEventListener("click", handleClickNewBill);
+      userEvent.click(newBillBtn);
+      expect(handleClickNewBill).toHaveBeenCalled();
+      expect(screen.getByText("Envoyer une note de frais")).toBeTruthy();
+    });
+  });
 });
