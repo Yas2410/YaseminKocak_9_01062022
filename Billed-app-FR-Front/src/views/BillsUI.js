@@ -25,7 +25,7 @@ const rows = (data) => {
   return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
   */
 
-  //Correctif TEST 1 (BUG REPORT - Bills) : Ajout de la méthode sort()
+  //TO DO 1 (BUG REPORT - Bills) : Ajout de la méthode sort()
   //qui va trier les éléments d'un tableau. Ici, par date
   return data && data.length
     ? data

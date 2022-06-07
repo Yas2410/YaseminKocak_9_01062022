@@ -18,7 +18,7 @@ export default class NewBill {
     new Logout({ document, localStorage, onNavigate });
   }
 
-  //Correctif TEST 3 (BUG HUNT - Bills) : Correctif lié au format de
+  //TO DO 3 (BUG HUNT - Bills) : Correctif lié au format de
   //document soumis lors de la création d'une note de frais
   // + Visualisation du document
   handleChangeFile = (e) => {

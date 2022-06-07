@@ -56,7 +56,7 @@ export default class Login {
       password: e.target.querySelector(`input[data-testid="employee-password-input"]`).value,
       */
 
-      //Correctif TEST 2 (BUG REPORT - Login) : S'agissant du log pour l'Admin, il faut ici remplacer
+      //TO DO 2 (BUG REPORT - Login) : S'agissant du log pour l'Admin, il faut ici remplacer
       //employee => admin (Voir les data-testid du fichier LoginUI)
 
       email: e.target.querySelector(`input[data-testid="admin-email-input"]`)
