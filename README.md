@@ -1,4 +1,4 @@
-================ Lancer le BACKEND ====================
+## ================ Lancer le BACKEND ====================
 
 ### Acceder au repertoire du projet :
 
@@ -22,7 +22,7 @@ npm run run:dev
 
 L'api est accessible sur le port `5678` en local, c'est à dire `http://localhost:5678`
 
-================ Lancer le FRONTEND ====================
+## ================ Lancer le FRONTEND ====================
 
 ### Acceder au repertoire du projet :
 
@@ -50,7 +50,7 @@ live-server
 
 Puis allez à l'adresse : `http://127.0.0.1:8080/`
 
-================ TESTS ====================
+## ================ TESTS ====================
 
 ### Comment lancer tous les tests en local avec Jest ?
 
@@ -64,7 +64,7 @@ npm run test
 
 `http://127.0.0.1:8080/coverage/lcov-report/`
 
-================ CONNEXION/MDP ====================
+## ================ CONNEXION/MDP ====================
 
 ### administrateur :
 
