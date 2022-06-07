@@ -126,3 +126,69 @@ describe("Given I am connected as an employee", () => {
     });
   });
 });
+
+//TO DO 5 :
+//Test d'intégration GET
+//Erreurs 404 & 500
+describe("Given I am connected as an Employee", () => {
+  describe("When I am on Bills page", () => {
+    test("fetches bills from mock API GET", async () => {
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ type: "Employee", email: "a@a" })
+      );
+      const root = document.createElement("div");
+      root.setAttribute("id", "root");
+      document.body.append(root);
+      router();
+      window.onNavigate(ROUTES_PATH.Bills);
+      await waitFor(() => screen.getByTestId("tbody"));
+      expect(screen.getByTestId("tbody").innerHTML).not.toBe("");
+    });
+
+    describe("When an error occurs on API", () => {
+      beforeEach(() => {
+        jest.spyOn(mockStore, "bills");
+        Object.defineProperty(window, "localStorage", {
+          value: localStorageMock,
+        });
+        const user = JSON.stringify({
+          type: "Employee",
+        });
+        window.localStorage.setItem("user", user);
+        const root = document.createElement("div");
+        root.setAttribute("id", "root");
+        document.body.appendChild(root);
+        router();
+      });
+
+      test("fetches bills from an API and fails with 404 message error", async () => {
+        mockStore.bills.mockImplementationOnce(() => {
+          return {
+            list: () => {
+              return Promise.reject(new Error("Erreur 404"));
+            },
+          };
+        });
+        window.onNavigate(ROUTES_PATH.Bills);
+        await new Promise(process.nextTick);
+        const message = screen.getByText(/Erreur 404/);
+        expect(message).toBeTruthy();
+      });
+
+      test("fetches bills from an API and fails with 500 message error", async () => {
+        mockStore.bills.mockImplementationOnce(() => {
+          return {
+            list: () => {
+              return Promise.reject(new Error("Erreur 500"));
+            },
+          };
+        });
+        window.onNavigate(ROUTES_PATH.Bills);
+        await new Promise(process.nextTick);
+        const message = screen.getByText(/Erreur 500/);
+        expect(message).toBeTruthy();
+      });
+    });
+  });
+});
