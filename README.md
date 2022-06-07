@@ -6,7 +6,7 @@
 cd Billed-app-FR-Back
 ```
 
-### Acceder au repertoire du projet :
+### Installer les dépendances du projet :
 
 ```
 npm install
