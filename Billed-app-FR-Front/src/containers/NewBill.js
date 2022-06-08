@@ -1,5 +1,6 @@
 import { ROUTES_PATH } from "../constants/routes.js";
 import Logout from "./Logout.js";
+import ErrorPage from "../views/ErrorPage.js";
 
 export default class NewBill {
   constructor({ document, onNavigate, store, localStorage }) {
@@ -55,13 +56,14 @@ export default class NewBill {
           },
         })
         .then(({ fileUrl, key }) => {
-          console.log(fileUrl);
+          console.log("fileUrl", fileUrl);
           this.billId = key;
           this.fileUrl = fileUrl;
           this.fileName = fileName;
         })
         .catch((error) => {
-          console.error("create error");
+          console.log("create error");
+          // Show error page (because error is not a parameter in NewBillUI)
           const rootDiv = document.getElementById("root");
           rootDiv.innerHTML = ErrorPage(error);
         });
@@ -98,8 +100,23 @@ export default class NewBill {
       fileName: this.fileName,
       status: "pending",
     };
-    this.updateBill(bill);
-    this.onNavigate(ROUTES_PATH["Bills"]);
+
+    //Vérifier si les champs requis sont bien complétés
+    var requiredFieldsFilled = true;
+    if (!e.target.querySelector(`input[data-testid="datepicker"]`).value) {
+      requiredFieldsFilled = false;
+    }
+    if (!e.target.querySelector(`input[data-testid="amount"]`).value) {
+      requiredFieldsFilled = false;
+    }
+    if (!e.target.querySelector(`input[data-testid="pct"]`).value) {
+      requiredFieldsFilled = false;
+    }
+
+    if (requiredFieldsFilled) {
+      this.updateBill(bill);
+      //this.onNavigate(ROUTES_PATH['Bills'])
+    }
   };
 
   // not need to cover this function by tests
@@ -112,7 +129,7 @@ export default class NewBill {
           this.onNavigate(ROUTES_PATH["Bills"]);
         })
         .catch((error) => {
-          console.error("update error");
+          console.log("update error");
           // Show error page (because error is not a parameter in NewBillUI)
           const rootDiv = document.getElementById("root");
           rootDiv.innerHTML = ErrorPage(error);

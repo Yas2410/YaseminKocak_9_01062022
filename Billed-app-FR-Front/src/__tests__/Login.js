@@ -222,7 +222,7 @@ describe("Given that I am a user on login page", () => {
         })
       );
     });
-
+    //Modification de la fonctionnalité afin de faire passer le test au vert -2-
     test("It should renders HR dashboard page", () => {
       expect(screen.queryByText("Validations")).toBeTruthy();
     });
