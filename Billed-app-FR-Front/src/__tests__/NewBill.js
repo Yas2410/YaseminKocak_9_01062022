@@ -162,9 +162,11 @@ describe("Given I am connected as an employee on NewBill page", () => {
 
       const fileChangeNewBill = screen.getByTestId("file");
       const handleChangeFileButton = jest.fn((e) =>
+        //Je rappelle ici ma méthode située dans mon fichier NewBill.js (containers)
         newCreatedBill.handleChangeFile(e)
       );
       fileChangeNewBill.addEventListener("change", handleChangeFileButton);
+      //Alerte
       window.alert = jest.fn();
 
       userEvent.upload(fileChangeNewBill, newBillInputData.file);

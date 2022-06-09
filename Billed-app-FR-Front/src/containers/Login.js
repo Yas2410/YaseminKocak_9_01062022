@@ -70,6 +70,7 @@ export default class Login {
     this.login(user)
       .catch((err) => this.createUser(user))
       .then(() => {
+        //Si les champs sont corrects, l'utilisateur est renvoyé vers le Dashboard Admin
         this.onNavigate(ROUTES_PATH["Dashboard"]);
         this.PREVIOUS_LOCATION = ROUTES_PATH["Dashboard"];
         PREVIOUS_LOCATION = this.PREVIOUS_LOCATION;

@@ -28,7 +28,6 @@ export default class NewBill {
     //.files[0];
     let file = files.files[0];
     let fileName = file.name;
-
     /*
     Code origine :
     const filePath = e.target.value.split(/\\/g);
@@ -63,7 +62,6 @@ export default class NewBill {
         })
         .catch((error) => {
           console.log("create error");
-          // Show error page (because error is not a parameter in NewBillUI)
           const rootDiv = document.getElementById("root");
           rootDiv.innerHTML = ErrorPage(error);
         });
@@ -71,6 +69,8 @@ export default class NewBill {
       //Message qui va s'afficher si l'utilisateur entre un
       //format différent de ceux cités dans la méthode match()
       alert("Seuls les formats JPG, JPEG et PNG sont acceptés");
+      //Rien n'est envoyé au niveau du formulaire de création d'une
+      //nouvelle note de frais
       e.target.value = null;
     }
   };

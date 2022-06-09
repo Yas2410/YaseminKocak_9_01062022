@@ -41,12 +41,14 @@ describe("Given I am connected as an employee", () => {
     //Modification de la fonctionnalité (VIEWS : BillsUI) afin de faire passer
     //le test au vert avec l'ajout de la méthode sort
     test("Then bills should be ordered from earliest to latest", () => {
+      //Fichier où va se trouver le code à modifier
       document.body.innerHTML = BillsUI({ data: bills });
       const dates = screen
         .getAllByText(
           /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i
         )
         .map((a) => a.innerHTML);
+      //Tri
       const antiChrono = (a, b) => (a < b ? 1 : -1);
       const datesSorted = [...dates].sort(antiChrono);
       expect(dates).toEqual(datesSorted);
@@ -95,7 +97,7 @@ describe("Given I am connected as an employee", () => {
   //TO DO 5 Bills Coverage :
   //Ajout d'un test pour l'ouverture d'une nouvelle
   //note de frais au clic sur le bouton "New Bill"
-  describe("When I click on the 4New Bill' button on Bills page", () => {
+  describe("When I click on the 'New Bill' button on Bills page", () => {
     test("Then it should render 'New Bill' page", () => {
       Object.defineProperty(window, "localStorage", {
         value: localStorageMock,

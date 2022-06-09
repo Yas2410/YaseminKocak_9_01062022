@@ -153,14 +153,12 @@ export default class {
       $(`#status-bills-container${this.index}`).html("");
       this.counter++;
     }
-
     /*
    Code origine :
     bills.forEach(bill => {
     $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
     })
     */
-
     //TO DO 4 (BUG HUNT - Dashboard) :
     //Permettre la selection de n'importe quel ticket
     //et l'ouverture de plusieurs listes
